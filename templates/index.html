@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्वागत - Real-Time Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="header">
+                <span class="menu-icon">☰</span>
+                <div class="user-info">
+                    <span>चैटबॉट भाषा : हिन्दी</span>
+                    <img src="https://via.placeholder.com/40" alt="User" class="user-image">
+                </div>
+            </div>
+            <div class="welcome-message">
+                <p>नमस्ते कीर्ति! स्वागत है स्वाद मी - जहाँ हर भाषा आपकी अपनी है</p>
+                <p>भाषा की बाधाओं को तोड़, रियल-टाइम अनुवाद के साथ</p>
+            </div>
+            <div class="options">
+                <button class="option-btn" onclick="showTranslation()">संपर्क करें</button>
+                <button class="option-btn" onclick="showTranslation()">संदेश भेजें</button>
+                <button class="option-btn" onclick="showTranslation()">आवाज से टेक्स्ट अनुवाद</button>
+                <button class="option-btn" onclick="showTranslation()">टेक्स्ट से आवाज अनुवाद</button>
+            </div>
+            <div class="controls">
+                <button class="control-btn"><img src="https://img.icons8.com/ios-filled/20/000000/phone.png" alt="Call"></button>
+                <button class="control-btn"><img src="https://img.icons8.com/ios-filled/20/000000/filled-message.png" alt="Message"></button>
+                <button class="control-btn"><img src="https://img.icons8.com/ios-filled/20/000000/volume-up.png" alt="Voice"></button>
+                <button class="control-btn"><img src="https://img.icons8.com/ios-filled/20/000000/keyboard.png" alt="Keyboard"></button>
+            </div>
+        </div>
+
+        <!-- Translation Section -->
+        <div class="translation-section">
+            <h1 class="welcome-text">Real-Time Translator</h1>
+            <p class="intro-text">I can translate text for you! What can I do for you today?</p>
+            <div class="neon-circle"></div>
+            <div class="translate-box">
+                <div class="input-section">
+                    <select id="sourceLang">
+                        {% for code, name in languages.items() %}
+                            <option value="{{ code }}" {% if code == 'en' %}selected{% endif %}>{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                    <textarea id="inputText" placeholder="Type text to translate..."></textarea>
+                </div>
+                <div class="output-section">
+                    <select id="targetLang">
+                        {% for code, name in languages.items() %}
+                            <option value="{{ code }}" {% if code == 'es' %}selected{% endif %}>{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="outputText" class="output-text"></div>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="useKeyboard">Use Keyboard</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
